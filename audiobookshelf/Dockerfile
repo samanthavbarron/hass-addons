@@ -11,9 +11,12 @@ RUN apk add --no-cache nodejs ffmpeg
 COPY --from=audiobookshelf /app /app
 COPY --from=audiobookshelf /usr/local/lib/nusqlite3 /usr/local/lib/nusqlite3
 
-# Use the musl-compiled SQLite unicode extension from the upstream image
-# to prevent BinaryManager from downloading the wrong (glibc) variant
+# Skip BinaryManager's version check which rejects our binaries and
+# downloads glibc variants that fail on Alpine/musl aarch64
 ENV NUSQLITE3_PATH="/usr/local/lib/nusqlite3/libnusqlite3.so"
+ENV FFMPEG_PATH="/usr/bin/ffmpeg"
+ENV FFPROBE_PATH="/usr/bin/ffprobe"
+ENV SKIP_BINARIES_CHECK="1"
 
 # Copy root filesystem
 COPY rootfs /
