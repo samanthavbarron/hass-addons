@@ -1,0 +1,19 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start Audiobookshelf
+# ==============================================================================
+
+declare -r CONFIG_DIR="/data/config"
+declare -r METADATA_DIR="/data/metadata"
+
+# Create persistent directories
+mkdir -p "${CONFIG_DIR}" "${METADATA_DIR}"
+
+bashio::log.info "Starting Audiobookshelf..."
+
+cd /app
+exec node index.js \
+    --host 0.0.0.0 \
+    --port 13378 \
+    --config "${CONFIG_DIR}" \
+    --metadata "${METADATA_DIR}"

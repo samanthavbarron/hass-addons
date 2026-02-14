@@ -1,0 +1,23 @@
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
+name: Audiobookshelf
+version: "0.1.0"
+slug: audiobookshelf
+description: Self-hosted audiobook and podcast server
+url: "https://github.com/samanthavbarron/hass-addons/tree/main/audiobookshelf"
+arch:
+  - aarch64
+  - amd64
+init: false
+ingress: true
+ingress_port: 13378
+panel_icon: mdi:book-music
+map:
+  - media:rw
+  - share:rw
+ports:
+  13378/tcp: 13378
+ports_description:
+  13378/tcp: Audiobookshelf web interface
+options: {}
+schema: {}
+image: "ghcr.io/samanthavbarron/{arch}-addon-audiobookshelf"
