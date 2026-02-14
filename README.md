@@ -6,6 +6,13 @@
 
 This repository contains the following add-ons
 
+### [Ad Begone](./ad-begone)
+
+![Supports aarch64 Architecture][aarch64-shield]
+![Supports amd64 Architecture][amd64-shield]
+
+_Automatically detect and remove ads from podcast MP3 files._
+
 ### [Audiobookshelf](./audiobookshelf)
 
 ![Supports aarch64 Architecture][aarch64-shield]
