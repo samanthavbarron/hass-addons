@@ -28,4 +28,4 @@ Your OpenAI API key. Required for the ad detection functionality.
 
 The OpenAI model to use for ad detection.
 
-**Default:** `gpt-4o`
+**Default:** `gpt-5-mini-2025-08-07`
