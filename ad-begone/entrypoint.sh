@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+export PATH="/app/.venv/bin:${PATH}"
+
 OPTIONS_FILE="/data/options.json"
 
 export OPENAI_API_KEY
