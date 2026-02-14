@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start Ad Begone
+# ==============================================================================
+
+declare watch_directory
+declare openai_model
+
+watch_directory=$(bashio::config 'watch_directory')
+openai_model=$(bashio::config 'openai_model')
+
+export OPENAI_API_KEY
+OPENAI_API_KEY=$(bashio::config 'openai_api_key')
+
+bashio::log.info "Starting Ad Begone..."
+bashio::log.info "Watching directory: ${watch_directory}"
+
+exec ad-begone --directory "${watch_directory}" --model "${openai_model}"
