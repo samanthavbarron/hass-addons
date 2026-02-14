@@ -13,11 +13,11 @@ map:
   - media:rw
   - share:rw
 options:
-  watch_directory: "/media/podcasts"
+  podcast_directory: "/media/podcasts"
   openai_api_key: ""
   openai_model: "gpt-4o"
 schema:
-  watch_directory: str
+  podcast_directory: str
   openai_api_key: password
   openai_model: str
 image: "ghcr.io/samanthavbarron/{arch}-addon-ad-begone"

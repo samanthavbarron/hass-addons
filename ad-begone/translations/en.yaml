@@ -1,7 +1,7 @@
 configuration:
-  watch_directory:
-    name: Watch Directory
-    description: Directory to watch for podcast MP3 files (e.g., /media/podcasts)
+  podcast_directory:
+    name: Podcast Directory
+    description: Directory containing podcast MP3 files (e.g., /media/podcasts)
   openai_api_key:
     name: OpenAI API Key
     description: Your OpenAI API key for ad detection

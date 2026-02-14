@@ -2,5 +2,7 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-# Copy root filesystem
-COPY rootfs /
+COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
