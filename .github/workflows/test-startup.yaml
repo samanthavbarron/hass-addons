@@ -1,0 +1,76 @@
+name: Test Addon Startup
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test ${{ matrix.addon }} addon starts
+    strategy:
+      matrix:
+        addon: ["audiobookshelf"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6.0.2
+
+      - name: Read build configuration
+        id: config
+        run: |
+          build_from=$(yq '.build_from.amd64' ./${{ matrix.addon }}/build.yaml)
+          port=$(yq '.ingress_port' ./${{ matrix.addon }}/config.yaml)
+          echo "build_from=$build_from" >> $GITHUB_OUTPUT
+          echo "port=$port" >> $GITHUB_OUTPUT
+
+      - name: Build addon image
+        run: |
+          docker build \
+            --build-arg BUILD_FROM=${{ steps.config.outputs.build_from }} \
+            -t addon-test:latest \
+            ./${{ matrix.addon }}
+
+      - name: Start addon container
+        run: |
+          docker run -d \
+            --name addon-test \
+            -p ${{ steps.config.outputs.port }}:${{ steps.config.outputs.port }} \
+            addon-test:latest
+
+      - name: Wait for addon to become ready
+        timeout-minutes: 2
+        run: |
+          port=${{ steps.config.outputs.port }}
+          echo "Waiting for addon to respond on port ${port}..."
+          for i in $(seq 1 30); do
+            if curl -sf --max-time 5 "http://localhost:${port}" > /dev/null 2>&1; then
+              echo "Addon is responding on port ${port}"
+              exit 0
+            fi
+
+            if [ "$(docker inspect -f '{{.State.Running}}' addon-test 2>/dev/null)" != "true" ]; then
+              echo "::error::Container exited unexpectedly"
+              docker logs addon-test
+              exit 1
+            fi
+
+            echo "Attempt ${i}/30 - waiting 2s..."
+            sleep 2
+          done
+
+          echo "::error::Addon did not respond within 60 seconds"
+          docker logs addon-test
+          exit 1
+
+      - name: Show addon logs
+        if: always()
+        run: docker logs addon-test 2>&1
+
+      - name: Cleanup
+        if: always()
+        run: docker stop addon-test > /dev/null 2>&1 || true
