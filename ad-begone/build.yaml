@@ -1,7 +1,7 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
 build_from:
-  aarch64: "ghcr.io/home-assistant/aarch64-base:3.21"
-  amd64: "ghcr.io/home-assistant/amd64-base:3.21"
+  aarch64: "ghcr.io/samanthavbarron/ad-begone:latest"
+  amd64: "ghcr.io/samanthavbarron/ad-begone:latest"
 labels:
   org.opencontainers.image.title: "Home Assistant Add-on: Ad Begone"
   org.opencontainers.image.description: "Automatically detect and remove ads from podcast MP3 files"
