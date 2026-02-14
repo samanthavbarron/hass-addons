@@ -1,0 +1,10 @@
+configuration:
+  podcast_directory:
+    name: Podcast Directory
+    description: Directory containing podcast MP3 files (e.g., /media/podcasts)
+  openai_api_key:
+    name: OpenAI API Key
+    description: Your OpenAI API key for ad detection
+  openai_model:
+    name: OpenAI Model
+    description: OpenAI model to use for ad detection (e.g., gpt-4o)

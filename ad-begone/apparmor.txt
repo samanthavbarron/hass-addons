@@ -1,0 +1,33 @@
+#include <tunables/global>
+
+profile ad-begone flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  # Capabilities
+  file,
+  signal (send) set=(kill,term,int,hup,cont),
+
+  # Entrypoint
+  /entrypoint.sh ix,
+  /bin/** ix,
+  /usr/bin/** ix,
+  /tmp/** rwk,
+
+  # Access to options.json and other files within your addon
+  /data/** rw,
+
+  # Python
+  /usr/bin/python3* ix,
+  /usr/lib/python3*/** r,
+  /usr/local/bin/python3* ix,
+  /usr/local/lib/python3*/** r,
+  /usr/local/bin/ad-begone ix,
+
+  # FFmpeg
+  /usr/bin/ffmpeg ix,
+  /usr/bin/ffprobe ix,
+
+  # Access to mapped volumes
+  /media/** rw,
+  /share/** rw,
+}
