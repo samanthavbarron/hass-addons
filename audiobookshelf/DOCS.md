@@ -15,6 +15,12 @@ directory. Metadata (cover images, cache) is also stored there.
 Media files should be placed in your Home Assistant `/media` or `/share`
 directories, both of which are mapped into the add-on.
 
+## Known Issues
+
+The Audiobookshelf web UI does not currently work within the Home Assistant
+ingress (the built-in "Open Web UI" panel). To access the interface, navigate
+directly to `http://<your-home-assistant-ip>:13378` in your browser.
+
 ## Ports
 
 The web interface is available on port **13378** by default.
