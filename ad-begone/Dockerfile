@@ -1,6 +1,4 @@
-# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
-ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM ghcr.io/samanthavbarron/ad-begone:latest
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh

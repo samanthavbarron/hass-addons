@@ -11,3 +11,9 @@ updates:
     schedule:
       interval: weekly
       time: "06:00"
+
+  - package-ecosystem: "docker"
+    directory: "/ad-begone"
+    schedule:
+      interval: weekly
+      time: "06:00"
