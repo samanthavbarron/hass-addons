@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: Ad Begone
-version: "0.2.0"
+version: "0.3.0"
 slug: ad-begone
 description: Automatically detect and remove ads from podcast MP3 files
 url: "https://github.com/samanthavbarron/hass-addons/tree/main/ad-begone"
