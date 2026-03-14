@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
 ARG BUILD_FROM
-FROM ghcr.io/advplyr/audiobookshelf:2.32.1 AS audiobookshelf
+FROM ghcr.io/advplyr/audiobookshelf:2.33.0 AS audiobookshelf
 
 FROM $BUILD_FROM
 
